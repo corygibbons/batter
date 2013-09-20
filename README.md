@@ -1,5 +1,5 @@
 # Batter
-Batter is a starting point for creating front-end themes for Pancake App. It is esentially the default front-end Pancake theme with most HTML/CSS stripped out.
+Batter is a starting point for creating front-end themes for [Pancake App](http://pancakeapp.com). It is esentially the default front-end Pancake theme with most HTML/CSS stripped out.
 Batter is setup so Grunt does all the heavy lifting to compile Compass/SCSS, lint and minify JS, and handle deployment.
 
 ## Usage
