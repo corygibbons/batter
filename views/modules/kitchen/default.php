@@ -178,7 +178,7 @@ Total Paid To Date: <?php echo Currency::format($client->paid_total); ?>
                     <!-- Task status title -->
                     <?php echo $task['status_title'] ?>
                 <?php else: ?>
-                    n/a
+                    <?php echo ($task['completed']) ? __('gateways:completed') : __('proposals:na'); ?>
                 <?php endif ?>
 
                 <!-- Task comments -->

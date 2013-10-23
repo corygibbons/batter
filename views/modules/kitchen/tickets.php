@@ -16,11 +16,11 @@
 <?php echo form_open(Settings::get('kitchen_route').'/'.$client->unique_id.'/new_ticket/', array('class' => 'form-holder row')) ?>
 
     <!-- Ticket subject -->
-    <label for="subject" style="width:20%;">Ticket Subject</label>
+    <label for="subject" style="width:20%;"><?php echo __('tickets:ticket_subject'); ?></label>
     <input type="text" id="subject" name="subject" style="padding:6px;border-radius:5px;border:1px solid #ccc;width:53%;margin-left:30px;margin-bottom:10px;">
 
     <!-- Ticket message -->
-    <label for="message" style="display:inline-block;vertical-align:top;">Ticket Message</label>
+    <label for="message" style="display:inline-block;vertical-align:top;"><?php echo __('tickets:ticket_message'); ?></label>
     <?php
     	echo form_textarea(array(
     		'name' => 'message',
@@ -33,11 +33,11 @@
     ?>
     
     <!-- Select priority -->
-    <label for="priority" style="width:20%;">Ticket Priority</label>
+    <label for="priority" style="width:20%;"><?php echo __('tickets:ticket_priority'); ?></label>
     <?php echo form_dropdown('priority_id', $priorities, 0,'style="width:54%;margin-left:33px;" class="sel_priority"'); ?>
 
     <!-- Select status -->
-    <label for="status" style="width:20%;">Ticket Status</label>
+    <label for="status" style="width:20%;"><?php echo __('tickets:ticket_status'); ?></label>
 	<?php echo form_dropdown('status_id', $statuses, 0,'style="width:54%;margin-left:38px;"'); ?>
 
     <?php /*
