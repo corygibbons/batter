@@ -20,12 +20,8 @@
 
         <!-- CSS -->
         <link rel="stylesheet" href="<?php echo Asset::get_src("redactor/redactor.css", 'js'); ?>"/>
-        <?php echo asset::css('kitchen_style.css', array('media' => 'all')); ?>
+        <?php echo asset::css('kitchen.css', array('media' => 'all')); ?>
         <?php echo (asset::get_src('frontend.css', 'css') == "") ? "" : asset::css('frontend.css', array('media' => 'all'), null, false); ?>
-
-        <link href='//fonts.googleapis.com/css?family=Cabin:400,700&subset=latin&v2' rel='stylesheet' type='text/css'>
-        <link href='//fonts.googleapis.com/css?family=Copse&subset=latin&v2' rel='stylesheet' type='text/css'>
-        <link href='//fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
 
         <?php echo asset::js('jquery-1.11.0.min.js'); ?>
         <?php

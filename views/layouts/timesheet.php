@@ -17,7 +17,7 @@
         <link rel="mask-icon" href="<?php echo asset::get_src('mask-icon.svg', 'img'); ?>" color="rgb(232,163,75)">
 
         <!-- CSS -->
-        <?php echo asset::css('invoice_style.css', array('media' => 'all')); ?>
+        <?php echo asset::css('invoice.css', array('media' => 'all')); ?>
         <?php echo (asset::get_src('frontend.css', 'css') == "") ? "" : asset::css('frontend.css', array('media' => 'all'), null, false); ?>
 
         <?php if (Settings::get('use_utf8_font') and $pdf_mode): ?>

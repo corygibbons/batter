@@ -54,7 +54,7 @@
         <?php echo asset::js('jquery-migrate-1.2.1' . (!IS_DEBUGGING ? '.min' : '') . '.js'); ?>
 
         <!-- CSS -->
-        <?php echo asset::css('invoice_style.css', array('media' => 'all')); ?>
+        <?php echo asset::css('invoice.css', array('media' => 'all')); ?>
         <?php echo (asset::get_src('frontend.css', 'css') == "") ? "" : asset::css('frontend.css', array('media' => 'all')); ?>
 
         <link href='//fonts.googleapis.com/css?family=Cabin:400,700&amp;subset=latin&amp;v2' rel='stylesheet' type='text/css'>
