@@ -1,4 +1,4 @@
-
+<div class="pageContainer">
     <?php foreach ($proposal['pages'] as $key => $page) : ?>
         <div class="page page-<?php echo $key; ?>" data-key="<?php echo $key; ?>">
             <div class="sectionContainer">
@@ -22,11 +22,7 @@
             <a href="" class="addEstimate"><?php echo __('proposals:addestimate');?></a>
         </div>
     <?php endforeach; ?>
-
-
-
-
-
+</div>
 <div class="page samplePage">
     <div class="sectionContainer"></div>
     <a href="" class="addSection"><?php echo __('proposals:createsection');?></a>
@@ -39,16 +35,9 @@
     <h3 class="section-subtitle editable"></h3>
     <div class="section-contents editable"></div>
 </div>
-
-
 <a href="" class="addPage"><?php echo __('proposals:createpage');?></a>
-
-
-
 <script>
 pagexofcount = '<?php echo __('proposals:pagexofcount')?>';
 </script>
-
-
-<script src="<?php echo asset::get_src('proposals.min.js', 'js');?>"></script>
-<script src="<?php echo asset::get_src('json2.min.js', 'js');?>"></script>
+<script src="<?php echo asset::get_src('proposals.js', 'js');?>"></script>
+<script src="<?php echo asset::get_src('json2.js', 'js');?>"></script>

@@ -1,0 +1,719 @@
+/*
+   proposal_style.css
+   Pancake Proposal Template
+
+	This template was design to be easily modifiable and simple to build new Pancake Payment Proposal templates from.
+
+   Copyright 2011 Pancake Payments (http://pancakeapp.com). All rights reserved.
+
+*/
+
+.proposal .sidebar .img-logo {margin-bottom: 2em;width: 220px; text-align:center;}
+
+
+html, body {
+	margin:0;
+	padding:0;
+        margin-top: 12px;
+	font-size:14px;
+	font-family:helvetica;
+	color:#4a4a4a;
+}
+
+.proposal.not-pdf {background: #F2F2F2;}
+
+.proposal.not-pdf #wrapper {
+	margin:auto 0;
+	padding: 0 0 0 320px;
+	max-width:1200px;
+}
+
+
+.proposal div.page {
+	border: 1px solid #ccc;
+	background-color: white;
+	margin-bottom: 50px;
+	margin-right:10px;
+	padding: 2em;
+}
+.proposal h2 {
+	margin-top: 0;
+}
+
+.proposal.admin .editable {cursor: pointer;}
+
+.proposal .editable {
+	position: relative;
+}
+.proposal textarea {
+	cursor: auto;
+	background: none;
+	outline: 2px dashed #ccc;
+	height: 1.2em;
+	width: 100%;
+	background: transparent;
+	color: inherit !important;
+	border: 0;
+	font-size: inherit;
+	font-weight: inherit;
+	font-family: inherit;
+	margin: 0;
+	padding: 0;
+}
+.proposal .cover-page {
+	border:1px solid #666;
+	color: #666;
+	text-align:center;
+	padding: 26px 50px 50px 50px;
+	margin-bottom: 50px;
+	min-height:400px;
+	background: #fff bottom right no-repeat;
+
+}
+
+
+.proposal .cover-page h2, .proposal .cover-page p {
+	color: #666 !important;
+	font-family: 'Muli', helvetica;
+}
+
+.proposal .sidebar span.pageCount {
+	color:#ccc;
+}
+.proposal .title {
+	display:block;
+	margin:0 auto;
+	text-align:center;
+}
+.proposal .sidebar > ul {
+	padding-left: 2em;
+        padding-bottom: 75px !important;
+}
+.proposal .sidebar:before, .proposal .sidebar:after {
+	content: "";
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: -16px;
+	display: block;
+	background: white;
+	height: 16px;
+	width: 16px;
+}
+.proposal .sidebar:before {
+	background: #142C35;
+}
+.proposal .sidebar:after {
+	border-top-right-radius: 8px;
+}
+.proposal .sidebar {
+	position: fixed;
+	width:240px;
+	top: 55px;
+	left: 0;
+	height:100%;
+	background: #f2f2f2 url('../img/proposal_logo.png') 20px 20px no-repeat;
+	padding: 0px 25px 25px;
+	color: #555;
+	text-shadow:0 2px #fff;
+	border-bottom-left-radius: 4px;
+        overflow-y: scroll;
+}
+.proposal .sidebar span {
+	text-shadow:none;
+}
+.proposal .sidebar h2 {
+	color: #666;
+	text-shadow:0 2px #fff;
+}
+.proposal .sidebar a.close {
+	float: right;
+	padding: 0;
+	background: transparent;
+}
+.proposal.not-pdf div.page, .proposal.not-pdf .cover-page {
+	-webkit-box-shadow: 0px 0px 10px #999;
+	-moz-box-shadow:  0px 0px 10px #999;
+	box-shadow:  0px 0px 10px #999;
+}
+
+.proposal #wrapper .section {
+	margin-bottom: 40px;
+}
+
+.proposal.pdf #wrapper .page {
+	padding-top: 0;
+}
+
+.proposal #wrapper .section:last-child {
+    margin-bottom: -20px;
+}
+
+.proposal.not-pdf #wrapper {
+	margin-top: 105px;
+	margin-bottom: 50px;
+}
+.proposal.admin .sidebar li {
+	cursor: move;
+}
+.proposal .samplePage, .proposal .sampleSection {
+	display: none;
+}
+.proposal .sidebar select {
+	margin-bottom: 2em;
+}
+.proposal #clientInfo span {
+	float: none;
+}
+.proposal .clientId, .proposal .sidebar .clientEdit, .proposalId {
+	display: none;
+}
+.proposal .saveProposal {
+	min-width: 100px;
+	text-align: center;
+}
+.proposal .sidebar ul {
+	padding: 0;
+	list-style: none;
+}
+.proposal .sidebar li {
+	min-height: 20px;
+}
+.proposal .sidebar > ul > li > ul {
+	min-height: 37px;
+}
+.proposal .sidebar > ul > li > ul > li > ul {
+	border: 5px solid black;
+	min-height: 37px;
+}
+.proposal .sidebar > ul > li > ul > .empty {
+	height: 37px;
+	background:#C8EBFE;
+	border:1px dashed #ccc;
+}
+.proposal .sidebar > ul > li > ul > li > ul > .empty {
+	height: 37px;
+	background: #007BCF;
+}
+.proposal .sidebar ul ul li {
+
+	margin-bottom:3px;
+
+}
+.proposal .sidebar ul ul li > span {
+	padding: 10px;
+	margin: 0;
+	display: block;
+	background:#333!important;
+	color:#fff;
+	border-radius: 8px;
+}
+
+#facebox .section-contents, .proposal .sidebar .section > ul, .proposal.not-admin .savePremadeSection, .proposal.not-admin .addEstimate, .proposal.pdf .savePremadeSection {
+	display:none;
+}
+
+.proposal .addSection, .proposal .addPage, .proposal .sidebar a, .proposal .savePremadeSection, .proposal .addEstimate, .proposal .pickEstimate, .proposal .createEstimate, .proposal .addPremadeSection {
+/*	background: #007BCF;
+	color: white;
+	display: inline-block;
+	padding: 10px;
+	border-radius: 8px;
+	text-decoration: none; */
+	display: inline-block;
+}
+
+.proposal .estimate-link-container {margin-top:17px;width:360px;}
+.proposal.not-pdf .sectionContainer .section {position:relative;}
+
+.proposal .savePremadeSection {
+	position:absolute;
+	top:0;right:0;
+	z-index: 2;
+	opacity:0;
+
+	-webkit-transition: opacity 0.2s linear;
+	-moz-transition: opacity 0.2s linear;
+	-o-transition: opacity 0.2s linear;
+	transition: opacity 0.2s linear;
+}
+
+.proposal .section:not(.section-being-edited):hover .savePremadeSection {
+	opacity:1;
+}
+
+body.proposal .addSection, body.proposal .addPremadeSection, body.proposal .addEstimate {
+    margin: 0;
+    margin-top: 3.5em;
+}
+
+.proposal.not-admin #wrapper .section:last-child {
+	margin-bottom: 0;
+}
+.proposal .sidebar .page > ul {
+	margin: 1em 0;
+	display: block;
+}
+.proposal .siteAddress {
+	width: 225px;
+}
+.proposal.pdf .sidebar, .proposal.pdf .addSection, .proposal.pdf .addPage, .proposal.not-admin .addSection, .proposal.not-admin .addPage, .proposal .editing-container, .proposal.not-admin .empty-stuffs, .proposal.pdf .addPremadeSection, .proposal.not-admin .addPremadeSection, .proposal.not-admin .savePremadeSection, .proposal.pdf .addEstimate {
+	display: none;
+}
+.proposal.pdf #clientInfo {
+	display: block;
+}
+.proposal.pdf .cover-page, .proposal.pdf .page {
+	height: 1022px;
+	border: 0;
+	page-break-after: always;
+	margin: 0;
+}
+.proposal.pdf .page:last-child {
+	page-break-after: avoid;
+}
+.proposal .empty-stuffs {
+	color: #ccc;
+}
+.proposal.pdf .empty-stuffs {
+	display: none;
+}
+.proposal .editing {
+	cursor: auto;
+/*	background: #142C35;*/
+	position: absolute;
+	font-size: 14px;
+	height: 20px;
+	top: -40px;
+	right: 0;
+	padding: 10px;
+}
+.proposal .editing a {
+	font-family:"Helvetica Neue",Arial,Helvetica,Geneva,sans-serif;
+	font-size:11px;
+	text-decoration:none;
+	color:#ccc;
+	height:20px;
+	text-indent:-9999px!important;
+	padding:5px 10px 5px 20px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+  	-moz-box-shadow: 0px 0px 4px #CCCCCC;
+  	-webkit-box-shadow: 0px 0px 4px #CCCCCC;
+  	box-shadow: 0px 0px 4px #CCCCCC;
+
+}
+
+.proposal .editing a.confirm {
+	border:1px solid #4eba29;
+	color:#4eba29;
+	background:#f2f2f2 url('../img/ui_icons/accepted_16.png') 2px 3px no-repeat;
+
+}
+
+.proposal .editing a.cancel {
+	border:1px solid #FF534F;
+	color:#FF534F;
+	background:#f2f2f2 url('../img/ui_icons/cancel_16.png') 2px 3px no-repeat;
+}
+
+
+.proposal .section .section-title, .premade-title {
+	color: #666 !important;
+	font-family: 'Muli', helvetica;
+	margin:0 0 0 0;
+}
+
+.proposal .section .section-subtitle, .premade-subtitle {
+	color: #999 !important;
+	margin:0 0 20px 0;
+}
+
+.proposal.not-admin .sidebar .section {
+	cursor:pointer;
+}
+
+
+/* =========================== */
+/* = Proposal Estimate Table = */
+/* =========================== */
+
+#content {
+	clear: both;
+}
+
+#content table {
+	margin: 0 0 30px 0;
+	width: 800px;
+	font-size: 12px;
+	line-height: 14px;
+}
+
+.pdf_mode #content table {
+	width: 670px !important;
+}
+
+#content table thead {
+	/* background:#f2f2f2; Known bug in DOMPDF, add when its fixed or whatever */
+	height: 35px;
+	color: #333333;
+
+}
+
+#content table thead th {
+	color: #d44518;
+	font-family: 'Droid Sans', sans-serif;
+	font-size: 14px;
+}
+
+#content table th {
+	padding: 10px 0 10px 0;
+}
+
+#content table td {
+	padding: 10px;
+}
+
+#content .column_1, #content .column_2, #content .column_3, #content .column_4, #content .column_5 {
+	padding: 10px 0 !important;
+}
+
+#content .total-heading, #content .total-values {
+	padding: 10px !important;
+}
+
+/* Define column widths here for online viewing. PDF mode is defined below */
+#content tr td.column_1 {
+	width: 450px;
+	font-size: 12px;
+	color: #000000;
+	/*	background: url('../img/bg-invoice-row-col1.gif') 10px 9px no-repeat; */
+}
+
+.pdf_mode #content tr td.column_1 {
+	width: 260px !important;
+}
+
+#content td.column_2 {
+	width: 60px;
+	text-align: center;
+}
+
+#content td.column_3 {
+	width: 100px;
+	text-align: center;
+}
+
+#content td.column_4 {
+	width: 40px;
+	text-align: center;
+}
+
+#content td.column_5 {
+	width: 70px;
+	text-align: center;
+}
+
+/* PDF mode to make sure the invoice stays narrow enough for PDF generation */
+.pdf_mode #content tr td.column_1 {
+	width: 307px;
+	font-size: 12px;
+
+}
+
+.pdf_mode td.column_2, td.column_3 {
+	width: 50px;
+}
+
+.pdf_mode td.column_4 {
+	width: 50px;
+	text-align: center;
+}
+
+/* END PDF mode */
+
+#content table tfoot {
+
+}
+
+#content .invoice-notes h3 {
+	font-size: 14px;
+	margin: 0 0 5px 0;
+	font-family: 'Droid Sans', sans-serif;
+	color: #555555;
+}
+
+#content .invoice-notes p, .main-body-style p {
+	font-family: 'Copse', serif;
+	color: #888888;
+	line-height: 18px;
+	font-size: 12px;
+	margin: 0 0 10px 0;
+}
+
+.payment-plan, .files-holder p {
+	font-family: 'Copse', serif;
+	color: #888888;
+	line-height: 18px;
+	font-size: 14px;
+	margin: 0 0 8px 0;
+}
+
+#content table tfoot tr.Im-sorry-for-this td {
+	padding: 0;
+	margin: 0;
+}
+
+#content table tfoot tr.Im-sorry-for-this td div.really-I-am {
+	border-top: 1px solid #e6e6e6;
+	height: 1px;
+	margin: 50px 0 5px;
+}
+
+#content table tr.invoice-desc-row {
+	height: 28px;
+	background: #f3f6f9;
+
+}
+
+#content table tr.invoice-desc-row td {
+	/*
+        border-color:#e6e6e6;
+        border-style: solid;
+        border-width: 1px 0px;
+        border-collapse:separate;
+        padding:1px 0;
+        margin:0;
+    */
+}
+
+#content table tr.border-top td, #content table tr.border-bottom td {
+	padding: 0;
+	margin: 0;
+}
+
+#content table tr.border-top td div {
+	border-bottom: 1px solid #e6e6e6;
+	height: 1px;
+	margin: 0 0 1px 0;
+	display: block;
+}
+
+#content table tr.border-bottom td div {
+	border-top: 1px solid #e6e6e6;
+	height: 1px;
+	margin: 1px 0 0 0;
+	display: block;
+}
+
+#content table tr.invoice-item-notes td {
+	font-family: 'Copse', serif;
+	color: #888888;
+	line-height: 160%;
+	font-size: 12px;
+}
+
+#content tfoot td.total-heading {
+	font-family: 'Copse', serif;
+	color: #555555;
+	text-align: right;
+}
+
+#content tfoot td.total-values {
+	font-family: 'Copse', serif;
+	color: #555555;
+	text-align: right;
+	white-space: nowrap;
+}
+
+#content tfoot td.invoice-due-on {
+	color: #d34517;
+	text-align: right;
+}
+
+#content table tr.invoice-total {
+	background: rgb(211, 69, 23);
+}
+
+#content table {
+	border-collapse: collapse;
+}
+
+#content table tr.invoice-total td {
+	color: #ffffff;
+	/*	border-top:1px solid #ccc;
+        border-bottom:1px solid #ccc; */
+	font-size: 14px;
+	font-family: 'Droid Sans', sans-serif;
+}
+
+#content .invoice-description {
+	vertical-align: top;
+	font-size: 14px;
+}
+
+#content .amount, #content .dueon, #wrapper a {
+	color: #555555;
+}
+
+#content .payment-plan a {
+	color: #d34517;
+}
+
+.orange {
+	color: #d34517 !important;
+}
+
+#content .file-to-download {
+	background-repeat: no-repeat;
+	display: inline-block;
+	padding: 3px 0 3px 24px;
+}
+
+#files {
+	margin: 20px 0 0 0
+}
+
+#files ul {
+	margin: 0;
+	list-style: none;
+	padding: 5px 0;
+}
+
+#files li {
+	display: inline;
+	padding: 6px 10px 6px 0px;
+	font-size: 10px
+}
+
+#content .payment-plan {
+	/*
+    border-top: 1px solid #E6E6E6;
+    border-bottom: 1px solid #E6E6E6;
+    */
+}
+
+#content #payment-plan-header {
+	margin-top: 30px;
+}
+
+#content .files-holder {
+	padding: 10px 0 0 0;
+}
+
+#content .invoice-description h3 {
+
+}
+
+#content .total-heading {
+	text-align: right;
+	width: 80px;
+}
+
+#content ul#taxes {
+	padding-left: 0;
+	font-size: 12px;
+}
+
+#content ul#taxes li {
+	list-style: none;
+}
+
+#content ul#taxes .name {
+	font-weight: bold;
+}
+
+.pdf_mode #content table {
+	margin-bottom: 0;
+}
+
+.pdf_mode #content .invoice-due-on {
+	padding-bottom: 0;
+}
+
+#content .column_6, #content table .column_6 {
+	text-align: right;
+	padding-right: 10px;
+}
+
+#content th.column_2, #content th.column_3, #content th.column_4 {
+	padding-right: 8px !important;
+}
+
+.estimate-select-description {color: #aaa !important; font-size: 14px; line-height: 1.4em;}
+
+/* =================================================== */
+/* = Override some default Pancake theme styles here = */
+/* =================================================== */
+
+
+#buttonBar {
+	background:#f2f2f2!important;
+}
+
+
+
+p {
+	margin:0;
+        padding-bottom: 10px;
+	line-height:18px;
+}
+
+#facebox .popup {margin-bottom: 50px;}
+#facebox .popup .content {padding:20px;}
+.csstransitions #facebox iframe {-webkit-transition: height 0.2s ease-in;-moz-transition: height 0.2s ease-in;-o-transition:height 0.2s ease-in;}
+
+#premade-sections {width: 800px;border-collapse: collapse;}
+.premade-actions {width: 200px;}
+.premade-contents {color: #999 !important; }
+.premadeSection td {vertical-align:top;}
+.premade-title {margin-top:20px;}
+.premade-actions a {text-decoration:none;display:block;background: #E3A05C;color:white;margin-bottom:2px;padding: 8px;border-radius:4px;}
+#premade-sections tr:not(:last-child) td {border-bottom: 2px solid #ddd;}
+#premade-sections td {padding: 20px;}
+
+.proposal.pdf .cover-page, .proposal.pdf .page {height: auto;}
+.proposal.pdf #estimate_table, .proposal.pdf #estimate_table td, .proposal.pdf #estimate_table th {width: auto;}
+.proposal.pdf #estimate_table .column_1, .proposal.pdf #estimate_table {width: 100%;}
+.proposal.pdf #estimate_table .column_2, .proposal.pdf #estimate_table .column_3, .proposal.pdf #estimate_table .column_4, .proposal.pdf #estimate_table .column_5 {white-space: nowrap;}
+
+.logo {
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+.logo img {
+    max-width: 100%;
+}
+
+.logo-brand-details {
+    width: 50%;
+    text-align: right;
+}
+
+.logo-brand-details .header-logo, .logo-brand-details .header-logo.with-side-text {
+    display: inline-block;
+    max-height: 50px;
+    margin: 0;
+    vertical-align: middle;
+}
+
+.logo-brand-details .header-logo.with-side-text {
+    margin-right: 8px;
+}
+
+.logo a {
+    text-decoration: none;
+}
+
+.header-logo.with-side-text {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1em;
+}
+
+.proposal .page img {
+	max-width: 100%;
+}
