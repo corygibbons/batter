@@ -1,192 +1,113 @@
-<h1><?php echo $client->first_name;?> <?php echo $client->last_name;?><br>Support Tickets</h1>
+<div class="content">
 
+  <h1><?php echo $client->first_name; ?> <?php echo $client->last_name; ?><br><?php echo __('tickets:support_tickets'); ?></h1>
 
-
-
-
-
-
-
-
-
-<?php // Submit a new ticket ?>
-
-<h2>Submit a Ticket</h3>
-
-<?php echo form_open(Settings::get('kitchen_route').'/'.$client->unique_id.'/new_ticket/', array('class' => 'form-holder row')) ?>
-
-    <!-- Ticket subject -->
-    <label for="subject" style="width:20%;"><?php echo __('tickets:ticket_subject'); ?></label>
-    <input type="text" id="subject" name="subject" style="padding:6px;border-radius:5px;border:1px solid #ccc;width:53%;margin-left:30px;margin-bottom:10px;">
-
-    <!-- Ticket message -->
-    <label for="message" style="display:inline-block;vertical-align:top;"><?php echo __('tickets:ticket_message'); ?></label>
-    <?php
-    	echo form_textarea(array(
-    		'name' => 'message',
-    		'id' => 'message',
-    		'style' => 'display:inline-block;width:100%;',
-    		'value' => '',
-    		'rows' => 10,
-    		'cols' => 55
-    	));
-    ?>
-    
-    <!-- Select priority -->
-    <label for="priority" style="width:20%;"><?php echo __('tickets:ticket_priority'); ?></label>
-    <?php echo form_dropdown('priority_id', $priorities, 0,'style="width:54%;margin-left:33px;" class="sel_priority"'); ?>
-
-    <!-- Select status -->
-    <label for="status" style="width:20%;"><?php echo __('tickets:ticket_status'); ?></label>
-	<?php echo form_dropdown('status_id', $statuses, 0,'style="width:54%;margin-left:38px;"'); ?>
-
-    <?php /*
-    <input type="hidden" name="is_billable" class="ticket_is_billable" value="0" />
-    <input type="hidden" name="ticket_amount" class="ticket_amt" value="0" />
-    */ ?>
-
-    <!-- Submit ticket -->
-    <input type="submit" id="submit" class="blue-btn" value="Add Ticket" style="width:15%;">
-
-</form>
-
-
-
-
-
-
-
-
-
-
-<h2>Active Tickets</h2>
-
-<?php if(count($tickets) > 0) : ?>
-
-    <!-- Ticket headings if you need them -->
-    <?php echo __('Status'); ?>
-    <?php echo __('Priority'); ?>
-    <?php echo __('Subject'); ?>
-    <?php echo __('Created'); ?>
-    <?php echo __('Updated'); ?>
-    <?php echo __('Responses'); ?>
-
-<?php endif; ?>
-
- 
-<?php if(count($tickets) > 0) : ?>
-
-    <?php foreach ($tickets as $ticket): ?>
-
-        <!-- Ticket status -->
-        <?php echo $ticket->status_title; ?>
-        <!-- Ticket priority -->
-        <?php echo $ticket->priority_title; ?>
-        <!-- Ticket suject -->
-        <?php echo $ticket->subject; ?>
-        <!-- Ticket created -->
-        <?php echo days_ago($ticket->created).' ago'; ?>
-        <!-- Ticket updated -->
-        <?php echo days_ago(empty($ticket->latest_history) ? $ticket->created : $ticket->latest_history->created).' ago'; ?>
-        <!-- Ticket responese -->
-        <?php echo $ticket->response_count ?> Responses
-        <!-- View ticket conversation -->
-        <?php echo anchor(Settings::get('kitchen_route').'/'.$client->unique_id.'/tickets/'.$ticket->id, 'View Conversation'); ?>
-
-    <?php endforeach ?>
-
-<?php else : ?>
-
-    No Tickets Created.
-
-<?php endif; ?>
-
-
-
-<?php if ($current_ticket): ?>
-
+  <?php if ($current_ticket): ?>
     <h2><?php echo $current_ticket->subject ?></h2>
-	
-    <?php 
-	$prev_date = '';
-	foreach ($current_ticket->activity as $ts => $activity): ?>
 
-    	<?php 
-    	$date = date('jS M Y', $ts);
-    	if ($prev_date != $date): 
-    		$prev_date = $date;
-    	?>
+    <?php $prev_date = ''; ?>
+    <?php foreach ($current_ticket->activity as $ts => $activity): ?>
 
-        <?php endif ?>
+      <?php $date = date('jS M Y', $ts); ?>
+      <?php if ($prev_date != $date) : $prev_date = $date; endif; ?>
 
+      <?php if (isset($activity['post']) && $activity['post']):
+        $is_staff = $activity['post']->user_id != null; ?>
 
-        <?php if (isset($activity['post']) && $activity['post']): 
-        	$is_staff = $activity['post']->user_id != null; ?>
-
+        <div class="ticketconvo <?php echo $is_staff ? 'left' : 'right' ?>">
+          <div class="image">
             <img src="<?php echo get_gravatar($is_staff ? $activity['post']->user->email : $current_ticket->client_email, 60); ?>" />
+          </div>
+          <div class="text">
+            <h4><?php echo $activity['post']->user_name ?></h4>
+            <p><?php echo nl2br($activity['post']->message) ?></p>
+          </div>
+        </div>
 
-            <!-- Username -->
-        	<?php echo $activity['post']->user_name ?>
-            <!-- Ticket message -->
-        	<?php echo nl2br($activity['post']->message) ?>
+        <br class="clear">
 
+        <?php if (!empty($activity['post']->orig_filename)): ?>
+          <div class="files">
+            <p><?php echo __('tickets:attachment') ?>:</p>
+            <?php $ext = explode('.', $activity['post']->orig_filename);
+              end($ext);
+              $ext = current($ext); ?>
+              <?php if ($ext == 'png' OR $ext == 'jpg' OR $ext == 'gif'): ?>
+                <div class="image-preview">
+                  <p><img src="<?php echo site_url(Settings::get('kitchen_route') . '/' . $client->unique_id . '/download_ticket_file/' . $activity['post']->real_filename); ?>" style="max-width:50%" /></p>
+                </div>
+              <?php endif; ?>
+              <?php $bg = asset::get_src($ext . '.png', 'img'); ?>
+              <?php $style = empty($bg) ? '' : 'style="background: url(' . $bg . ') 1px 0px no-repeat;"'; ?>
+              <a class="file-to-download" <?php echo $style; ?> href="<?php echo site_url(Settings::get('kitchen_route') . '/' . $client->unique_id . '/download_ticket_file/' . $activity['post']->real_filename); ?>"><?php echo $activity['post']->orig_filename; ?></a>
+          </div>
+        <?php endif; ?>
 
+      <?php endif ?>
 
-        	<?php if(!empty($activity['post']->orig_filename)): ?>
-
-                <!-- Attachment heading -->
-                <?php echo __('tickets:attachment') ?>:
-
-        		<?php $ext = explode('.', $activity['post']->orig_filename); end($ext); $ext = current($ext); ?>	
-        		<?php if($ext == 'png' OR $ext == 'jpg' OR $ext == 'gif'): ?>
-
-                    <img src="<?php echo site_url('admin/tickets/file/'.$activity['post']->real_filename); ?>" style="max-width:50%" />
-
-                <?php endif; ?>
-        		
-                <?php $bg = asset::get_src($ext.'.png', 'img'); ?>
-                <?php $style = empty($bg) ? '' : 'style="background: url('.$bg.') 1px 0px no-repeat;"'; ?>
-        		
-                <a href="<?php echo site_url('admin/tickets/file/'.$activity['post']->real_filename); ?>"><?php echo $activity['post']->orig_filename;?></a>
-
-            <?php endif; ?>
-
-        <?php endif ?>
-
-        <?php if (isset($activity['history']) && $activity['history']): ?>
-
-            <!-- Ticket status update notice -->
-            <!--    $activity['history']->status->background_color, $activity['history']->status->font_color -->
-            <?php echo $activity['history']->user_name ?> updated the ticket status to <strong><?php echo $activity['history']->status->title ?></strong> on <?php echo date('m/d/Y \a\t g:ia', $ts) ?>
-
-        <?php endif ?>
-
+      <?php if (isset($activity['history']) && $activity['history']): ?>
+        <div class="notice" style="border-bottom: 1px solid <?php echo $activity['history']->status->background_color ?>;">
+          <div><span style="background: <?php echo $activity['history']->status->background_color ?>; color: <?php echo $activity['history']->status->font_color ?>;"><?php echo __("tickets:user_updated_ticket", array($activity['history']->user_name, '<strong>'.$activity['history']->status->title.'</strong>', format_date($ts, true))); ?></span></div>
+        </div>
+      <?php endif ?>
     <?php endforeach ?>
 
+    <h3><?php echo __("tickets:leave_a_response"); ?></h3><br/>
+    <div class="ticketconvo">
+      <?php echo form_open_multipart(Settings::get('kitchen_route') . '/' . $client->unique_id . '/tickets/' . $current_ticket->id); ?>
+      <textarea name="message" style="width: 100%; height: 130px; margin-bottom: 10px;"></textarea> <br />
+        <div class="six columns" style='margin-bottom: 10px;'>
+          <label for='ticketfile' style="width: 11%;display: inline-block;"><?php echo __('global:attach_file'); ?>:</label> <input type="file" id="ticketfile" name="ticketfile">
+        </div>
+        <div class="six columns end" style="margin-bottom:10px;">
+          <label for="status" style="width: 11%;display: inline-block;"><?php echo __('tickets:ticket_status'); ?></label>
+          <span class="sel-item"><?php echo form_dropdown('status_id', $statuses, $current_ticket->status_id, 'style="width:54%;"'); ?></span>
+        </div>
 
-
-
-
-
-
-
-
-
-    <h2>Leave a Response</h2>
-
-    <?php echo form_open(Settings::get('kitchen_route').'/'.$client->unique_id.'/tickets/'.$current_ticket->id); ?>
-
-        <!-- Text area -->
-        <textarea name="message" style="width: 100%; height: 130px; margin-bottom: 10px;"></textarea> <br />
-
-        <!-- Ticket Status -->
-        <label for="status" style="width:20%;">Ticket Status</label>
-        <?php echo form_dropdown('status_id', $statuses, $current_ticket->status_id,'style="width:54%;margin-left:38px;"'); ?>
-
-        <!-- Submit button -->
         <input type="submit" class="submit" value="Update Ticket">
+      <?php echo form_close(); ?>
+    </div>
+  <?php endif ?> <?php // $current_ticket ?>
 
-    <?php echo form_close(); ?>
+  <h2><?php echo __("tickets:active_tickets"); ?></h2>
+  <table>
+    <thead>
+      <?php if (count($tickets) > 0) : ?>
+        <tr>
+          <th><?php echo __('global:subject') ?></th>
+          <th><?php echo __('global:status') ?></th>
+          <th><?php echo __('tickets:ticket_priority') ?></th>
+          <th><?php echo __('global:created') ?></th>
+          <th><?php echo __('global:updated') ?></th>
+          <th><?php echo __('kitchen:responses') ?></th>
+        </tr>
+      <?php endif; ?>
+    </thead>
 
+    <tbody>
+      <?php if (count($tickets) > 0) : ?>
+        <?php foreach ($tickets as $ticket): ?>
+          <tr class="ticket medium">
+            <td><?php echo anchor(Settings::get('kitchen_route') . '/' . $client->unique_id . '/tickets/' . $ticket->id, $ticket->subject); ?></td>
+            <td><span class="open" style="background-color: <?php echo $ticket->status_background_color; ?>"></span><?php echo $ticket->status_title; ?></td>
+            <td><?php echo $ticket->priority_title; ?></td>
+            <td><?php echo better_timespan($ticket->created, true); ?></td>
+            <td><?php echo better_timespan($ticket->latest, true); ?></td>
+            <td><?php echo __("kitchen:x_responses", array($ticket->response_count)); ?></td>
+          </tr>
+        <?php endforeach ?>
+      <?php else : ?>
+        <tr class="ticket medium">
+          <td colspan="7">
+            <?php echo __('kitchen:no_tickets_created'); ?>
+          </td>
+        </tr>
+      <?php endif; ?>
+    </tbody>
+  </table>
 
-<?php endif ?>
+</div> <?php // .content ?>
+
+<script>
+    $('textarea').redactor(redactor_options);
+</script>
