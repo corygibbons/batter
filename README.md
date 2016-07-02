@@ -17,4 +17,4 @@ gulp
 The rest should take care of itself.
 
 ## Workflow
-Since Grunt is taking care of minification automatically, the `css` and `js` folders in the root directory can be ignored for the most part as SCSS and JS from `assets` will be minified there directly. All CSS and JS changes can be made in `assets/scss` and `assets/js`.
+Since Gulp is taking care of minification automatically, the `css` and `js` folders in the root directory can be ignored for the most part as Stylus and JS from `src` will be minified there directly. All CSS and JS changes can be made in `src/stylus` and `src/js`.
