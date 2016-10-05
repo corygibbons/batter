@@ -1,7 +1,7 @@
 <div class="login">
-
+fghvbjnkml,
 	<?php echo Business::getLogo(false, false, 2);?>
-	<p><?php echo __('kitchen:client_welcome') ?> <?php echo $client->first_name . " ". $client->last_name  . " - ". $client->company?></p>
+	<p>sfsdf<?php echo __('kitchen:client_welcome') ?> <?php echo $client->first_name . " ". $client->last_name  . " - ". $client->company?></p>
 	<h3><?php echo __('kitchen:pleaselogin') ?></h3>
 
 	<?php echo form_open(Settings::get('kitchen_route')."/login/".$client->unique_id, 'id="login-form"');?>
